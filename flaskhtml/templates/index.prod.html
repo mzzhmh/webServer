@@ -1,0 +1,63 @@
+<!doctype html>
+<p style="text-align: center;"><strong>新南威尔士州</strong><strong>新冠肺炎统计</strong></p>
+<hr />
+<p style="text-align: left;"><strong>每日数据:</strong></p>
+<table style="border-color: black; width: 588.6px;" border="1">
+	<tbody>
+	<tr>
+		<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong>日期</strong></span></td>
+		<td style="width: 163px; text-align: center;"><span style="color: #000000;"><strong>每日新增</strong></span></td>
+		<td style="width: 230px; text-align: center;"><span style="color: #000000;"><strong>每日测试人数</strong></span></td>
+		<td style="width: 224px; text-align: center;"><span style="color: #000000;"><strong>累计确诊</strong></span></td>
+		<td style="width: 261.6px; text-align: center;"><strong>累计死亡</strong></td>
+		<td style="width: 261.6px; text-align: center;"><strong>新增社区传染</strong></td>
+	</tr>
+	{%- for row in dataFrame[::-1] %}
+	<tr>
+		<td style="width: 133px; text-align: center;">{{ row[1] }}</td>
+		<td style="width: 163px; text-align: center;"><span style="color: #000000;">{{ row[2] }}</span></td>
+		<td style="width: 230px; text-align: center;"><span style="color: #000000;">{{ row[3] }}</span></td>
+		<td style="width: 224px; text-align: center;"><span style="color: #000000;">{{ row[4] }}</span></td>
+		<td style="width: 261.6px; text-align: center;"><span style="color: #000000;">{{ row[6] }}</span></td>
+		<td style="width: 261.6px; text-align: center;"><span style="color: #000000;">{{ row[7] }}</span></td>
+	</tr>
+	{%- endfor %}
+	</tbody>
+</table>
+<p style="text-align: center;"><strong>澳大利亚</strong><strong>新冠肺炎统计</strong></p>
+<hr />
+<p style="text-align: left;"><strong>每日数据:</strong></p>
+<table style="border-color: black; width: 1588.6px;" border="1">
+	<tbody>
+	<tr>
+		<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong>日期</strong></span></td>
+		<td style="width: 361.6px; text-align: center;"><span style="color: #0000ff;"><strong>澳洲全国新增</strong></td>
+		<td style="width: 361.6px; text-align: center;"><span style="color: #0000ff;"><strong>澳洲全国确诊总数</strong></td>
+		<td style="width: 363px; text-align: center;"><span style="color: #000000;"><strong>新南威尔士新增</strong></span></td>
+		<td style="width: 330px; text-align: center;"><span style="color: #000000;"><strong>昆士兰新增</strong></span></td>
+		<td style="width: 324px; text-align: center;"><span style="color: #000000;"><strong>南澳新增</strong></span></td>
+		<td style="width: 361.6px; text-align: center;"><strong>维多利亚新增</strong></td>
+		<td style="width: 361.6px; text-align: center;"><strong>西澳新增</strong></td>
+		<td style="width: 361.6px; text-align: center;"><strong>塔斯马尼亚新增</strong></td>
+		<td style="width: 361.6px; text-align: center;"><strong>北领地新增</strong></td>
+		<td style="width: 361.6px; text-align: center;"><strong>堪培拉新增</strong></td>
+	</tr>
+	{%- for row in dataFrame2[::-1] %}
+	<tr>
+		<td style="width: 133px; text-align: center;">{{ row[1] }}</td>
+		<td style="width: 361.6px; text-align: center;"><span style="color: #0000ff;">{{ row[10] }}</span></td>
+		<td style="width: 361.6px; text-align: center;"><span style="color: #0000ff;">{{ row[11] }}</span></td>
+		<td style="width: 363px; text-align: center;"><span style="color: #000000;">{{ row[2] }}</span></td>
+		<td style="width: 330px; text-align: center;"><span style="color: #000000;">{{ row[3] }}</span></td>
+		<td style="width: 324px; text-align: center;"><span style="color: #000000;">{{ row[4] }}</span></td>
+		<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[5] }}</span></td>
+		<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[6] }}</span></td>
+		<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[7] }}</span></td>
+		<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[8] }}</span></td>
+		<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[9] }}</span></td>
+	</tr>
+	{%- endfor %}
+	</tbody>
+</table>
+
+<p>&nbsp;</p>

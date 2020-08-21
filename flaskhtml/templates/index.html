@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+	overflow: hidden;
+	border: 0px solid #ccc;
+	background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	/*padding: 14px 16px;*/
+	transition: 0.3s;
+	font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+	background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+	background-color: #FFFC9F;
+}
+
+/* Style the tab content */
+.tabcontent {
+	display: none;
+	/*padding: 6px 12px;*/
+	border: 0px solid #ccc;
+	border-top: none;
+}
+table {
+	  font-family: arial, sans-serif;
+	    border-collapse: collapse;
+	      width: 100%;
+}
+
+td, th {
+	  border: 1px solid #dddddd;
+	    text-align: left;
+	      /*padding: 8px;*/
+}
+
+th {
+	  background-color: #dddddd;
+}
+table#NSWtable tr:nth-last-child(2) td:nth-child(1):hover,
+table#NSWtable tr:nth-last-child(2) td:nth-child(2):hover,
+table#NSWtable tr:nth-last-child(2) td:nth-child(3):hover,
+table#NSWtable tr:nth-last-child(2) td:nth-child(4):hover,
+table#NSWtable tr:nth-last-child(2) td:nth-child(5):hover,
+table#NSWtable tr:nth-last-child(2) td:nth-child(6):hover,
+table#NSWtable tr:nth-last-child(2) td:nth-child(7):hover,
+table#NSWtable tr:nth-last-child(1) td:nth-child(8):hover
+{
+	background-color: #ccc;
+}
+table#NSWtable tr:nth-last-child(2) td:nth-child(1),
+table#NSWtable tr:nth-last-child(2) td:nth-child(2),
+table#NSWtable tr:nth-last-child(2) td:nth-child(3),
+table#NSWtable tr:nth-last-child(2) td:nth-child(4),
+table#NSWtable tr:nth-last-child(2) td:nth-child(5),
+table#NSWtable tr:nth-last-child(2) td:nth-child(6),
+table#NSWtable tr:nth-last-child(2) td:nth-child(7),
+table#NSWtable tr:nth-last-child(1) td:nth-child(8)
+{
+	background-color: #F7F6EF;
+}
+#table#AUtable tr:nth-last-child(2) td:nth-child(1):hover,
+table#AUtable tr:nth-last-child(2) td:nth-child(2):hover,
+table#AUtable tr:nth-last-child(2) td:nth-child(3):hover,
+table#AUtable tr:nth-last-child(2) td:nth-child(4):hover,
+table#AUtable tr:nth-last-child(2) td:nth-child(5):hover,
+table#AUtable tr:nth-last-child(2) td:nth-child(6):hover,
+table#AUtable tr:nth-last-child(2) td:nth-child(7):hover,
+table#AUtable tr:nth-last-child(2) td:nth-child(8):hover,
+table#AUtable tr:nth-last-child(2) td:nth-child(9):hover,
+table#AUtable tr:nth-last-child(2) td:nth-child(10):hover,
+table#AUtable tr:nth-last-child(2) td:nth-child(11):hover,
+table#AUtable tr:nth-last-child(1) td:nth-child(1):hover
+{
+	background-color: #ccc;
+}
+#table#AUtable tr:nth-last-child(2) td:nth-child(1),
+table#AUtable tr:nth-last-child(2) td:nth-child(2),
+table#AUtable tr:nth-last-child(2) td:nth-child(3),
+table#AUtable tr:nth-last-child(2) td:nth-child(4),
+table#AUtable tr:nth-last-child(2) td:nth-child(5),
+table#AUtable tr:nth-last-child(2) td:nth-child(6),
+table#AUtable tr:nth-last-child(2) td:nth-child(7),
+table#AUtable tr:nth-last-child(2) td:nth-child(8),
+table#AUtable tr:nth-last-child(2) td:nth-child(9),
+table#AUtable tr:nth-last-child(2) td:nth-child(10),
+table#AUtable tr:nth-last-child(2) td:nth-child(11),
+table#AUtable tr:nth-last-child(1) td:nth-child(1)
+{
+	background-color: #F7F6EF;
+}
+#table#AUtable2 tr:nth-last-child(2) td:nth-child(1):hover,
+table#AUtable2 tr:nth-last-child(2) td:nth-child(2):hover,
+table#AUtable2 tr:nth-last-child(2) td:nth-child(3):hover,
+table#AUtable2 tr:nth-last-child(2) td:nth-child(4):hover,
+table#AUtable2 tr:nth-last-child(2) td:nth-child(5):hover,
+table#AUtable2 tr:nth-last-child(1) td:nth-child(1):hover
+{
+	background-color: #ccc;
+}
+#table#AUtable2 tr:nth-last-child(2) td:nth-child(1),
+table#AUtable2 tr:nth-last-child(2) td:nth-child(2),
+table#AUtable2 tr:nth-last-child(2) td:nth-child(3),
+table#AUtable2 tr:nth-last-child(2) td:nth-child(4),
+table#AUtable2 tr:nth-last-child(2) td:nth-child(5),
+table#AUtable2 tr:nth-last-child(1) td:nth-child(1)
+{
+	background-color: #F7F6EF;
+}
+
+button {
+	background-color: Transparent;
+	background-repeat:no-repeat;
+	border: none;
+	cursor:pointer;
+	overflow: hidden;
+	outline:none;
+}
+/* The Modal (background) */
+.modal {
+	/*position: relative;*/
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 90%; /* Full width */
+	height: 90%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 1%;
+	/*border: 1px solid #888;*/
+	width: 80%;
+	height: 70%;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+#piechart {
+	height: 90%;
+	width: 90%;
+}
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">  
+<script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">  
+<script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+
+</head>
+<body>
+<div class="container">
+<h3 style="text-align: center;"><strong>Australia </strong><strong>Covid19 Live Data</strong></h3>
+<hr />
+<div class="tab">
+	<button class="tablinks" onclick="openCity(event, 'NSW')" id="defaultOpen">New South Wales</button>
+	<button class="tablinks" onclick="openCity(event, 'Australia')">National and Other States</button>
+</div>
+
+<div id="NSW" class="tabcontent">
+	<table id="NSWtable" style="border-color: black;" border="0">
+		<tbody>
+		<tr>
+			<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong>Date</strong></span></td>
+			<td style="width: 163px; text-align: center;"><span style="color: #000000;"><strong>Daily Increased Cases</strong></span></td>
+			<td style="width: 224px; text-align: center;"><span style="color: #000000;"><strong>Total Confirmed Cases</strong></span></td>
+			<td style="width: 224px; text-align: center;"><span style="color: #000000;"><strong>Total Recovered Cases</strong></span></td>
+			<td style="width: 224px; text-align: center;"><span style="color: #000000;"><strong>Remained Active Cases</strong></span></td>
+			<td style="width: 230px; text-align: center;"><span style="color: #000000;"><strong>Tested Cases Daily</strong></span></td>
+			<td style="width: 261.6px; text-align: center;"><strong>Total Death</strong></td>
+			<td style="width: 261.6px; text-align: center;"><strong>Community Transmission Daily</strong></td>
+		</tr>
+		{%- for row in dataFrame[::-1] %}
+		<tr>
+			<td style="width: 133px; text-align: center;">{{ row[1] }}</td>
+			<td style="width: 163px; text-align: center;"><span style="color: #000000;">{{ row[2] }}</span></td>
+			<td style="width: 224px; text-align: center;"><span style="color: #000000;">{{ row[4] }}</span></td>
+			<td style="width: 224px; text-align: center;"><span style="color: #000000;">{{ row[8] }}</span></td>
+			<td style="width: 224px; text-align: center;"><span style="color: #000000;">{{ row[9] }}</span></td>
+			<td style="width: 230px; text-align: center;"><span style="color: #000000;">{{ row[3] }}</span></td>
+			<td style="width: 261.6px; text-align: center;"><span style="color: #000000;">{{ row[6] }}</span></td>
+			<td style="width: 261.6px; text-align: center;"><span style="color: #000000;">{{ row[7] }}</span></td>
+		</tr>
+		{%- endfor %}
+		<tr>
+			<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong></strong></span></td>
+			<td id="nswDaily" style="width: 163px; text-align: center;">
+			    <button onclick="NSWDaily()" style="text-decoration:none;">
+				<span style="color: #000000;">
+					<strong>Trend</strong>
+			        </span>
+			    </button>
+		        </td>
+			<td id="nswTotal" style="width: 163px; text-align: center;">
+				<button onclick="NSWTotal()" style="text-decoration:none;">
+					<span style="color: #000000;">
+						<strong>Trend</strong>
+					</span>
+				</button>
+			</td>
+			<td id="nswRecovery" style="width: 220px; text-align: center;">
+				<button onclick="NSWRecovery()" style="text-decoration:none;">
+					<span style="color: #000000;">
+						<strong>Trend</strong>
+					</span>
+				</button>
+			</td>
+			<td id="nswActive" style="width: 220px; text-align: center;">
+				<button onclick="NSWActive()" style="text-decoration:none;">
+					<span style="color: #000000;">
+						<strong>Trend</strong>
+					</span>
+				</button>
+			</td>
+			<td id="nswTest" style="width: 220px; text-align: center;">
+				<button onclick="NSWTest()" style="text-decoration:none;">
+					<span style="color: #000000;">
+						<strong>Trend</strong>
+					</span>
+				</button>
+			</td>
+			<td id="nswDeath" style="width: 220px; text-align: center;">
+				<button onclick="NSWDeath()" style="text-decoration:none;">
+					<span style="color: #000000;">
+						<strong>Trend</strong>
+					</span>
+				</button>
+			</td>
+			<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong></strong></span></td>
+		</tr>
+		<tr>
+			<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong></strong></span></td>
+			<td id="nswDailySW" style="width: 163px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swNSWDaily" name="swNSWDaily" onclick="sanitCK()">
+					<label class="custom-control-label" for="swNSWDaily"></label>
+				</div>
+		        </td>
+			<td id="nswTotalSW" style="width: 163px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swNSWTotal" name="swNSWTotal" onclick="sanitCK()">
+					<label class="custom-control-label" for="swNSWTotal"></label>
+				</div>
+			</td>
+			<td id="nswRecoverySW" style="width: 220px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swNSWRecovery" name="swNSWRecovery" onclick="sanitCK()">
+					<label class="custom-control-label" for="swNSWRecovery"></label>
+				</div>
+			</td>
+			<td id="nswActiveSW" style="width: 220px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swNSWActive" name="swNSWActive" onclick="sanitCK()">
+					<label class="custom-control-label" for="swNSWActive"></label>
+				</div>
+			</td>
+			<td id="nswTestSW" style="width: 220px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swNSWTest" name="swNSWTest" onclick="sanitCK()">
+					<label class="custom-control-label" for="swNSWTest"></label>
+				</div>
+			</td>
+			<td id="nswDeathSW" style="width: 220px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swNSWDeath" name="swNSWDeath" onclick="sanitCK()">
+					<label class="custom-control-label" for="swNSWDeath"></label>
+				</div>
+			</td>
+			<td id="nswCross" style="width: 220px; text-align: center;">
+				<button onclick="NSWCross()" style="text-decoration:none;">
+					<span style="color: #000000;">
+						<strong>Cross Reference</strong>
+					</span>
+				</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<div id="myModal" class="modal">
+	<div class="modal-content">
+		<span class="close">&times;</span>
+		<div id="piechart"></div>
+	</div>
+</div>
+<div id="Australia" class="tabcontent">
+	<table id="AUtable" style="border-color: black;" border="1">
+		<tbody>
+		<tr>
+			<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong>Date</strong></span></td>
+			<td style="width: 361.6px; text-align: center;"><span style="color: #0000ff;"><strong>National Increased Daily</strong></td>
+			<td style="width: 361.6px; text-align: center;"><span style="color: #0000ff;"><strong>National Confirmed Total</strong></td>
+			<td style="width: 363px; text-align: center;"><span style="color: #000000;"><strong>NSW Increased Daily</strong></span></td>
+			<td style="width: 330px; text-align: center;"><span style="color: #000000;"><strong>QLD Increased Daily</strong></span></td>
+			<td style="width: 324px; text-align: center;"><span style="color: #000000;"><strong>SA Increased Daily</strong></span></td>
+			<td style="width: 361.6px; text-align: center;"><strong>VIC Increased Daily</strong></td>
+			<!--<td style="width: 361.6px; text-align: center;"><strong>西澳新增</strong></td>
+			<td style="width: 361.6px; text-align: center;"><strong>塔斯马尼亚新增</strong></td>
+			<td style="width: 361.6px; text-align: center;"><strong>北领地新增</strong></td>
+			<td style="width: 361.6px; text-align: center;"><strong>堪培拉新增</strong></td>-->
+		</tr>
+		{%- for row in dataFrame2[::-1] %}
+		<tr>
+			<td style="width: 133px; text-align: center;">{{ row[1] }}</td>
+			<td style="width: 361.6px; text-align: center;"><span style="color: #0000ff;">{{ row[10] }}</span></td>
+			<td style="width: 361.6px; text-align: center;"><span style="color: #0000ff;">{{ row[11] }}</span></td>
+			<td style="width: 363px; text-align: center;"><span style="color: #000000;">{{ row[2] }}</span></td>
+			<td style="width: 330px; text-align: center;"><span style="color: #000000;">{{ row[3] }}</span></td>
+			<td style="width: 324px; text-align: center;"><span style="color: #000000;">{{ row[4] }}</span></td>
+			<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[5] }}</span></td>
+			<!--<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[6] }}</span></td>
+			<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[7] }}</span></td>
+			<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[8] }}</span></td>
+			<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[9] }}</span></td>-->
+		</tr>
+		{%- endfor %}
+		<tr>
+			<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong></strong></span></td>
+			<td id="AUDaily" style="width: 163px; text-align: center;">
+			<button onclick="AUDaily()" style="text-decoration:none;">
+				<span style="color: #000000;">
+					<strong>Trend</strong>
+				</span>
+			</button>
+			</td>
+			<td id="AUTotal" style="width: 220px; text-align: center;">
+			<button onclick="AUTotal()" style="text-decoration:none;">
+				<span style="color: #000000;">
+					<strong>Trend</strong>
+				</span>
+			</button>
+			</td>
+			<td id="nswDaily" style="width: 163px; text-align: center;">
+			<button onclick="NSWDaily()" style="text-decoration:none;">
+				<span style="color: #000000;">
+					<strong>Trend</strong>
+				</span>
+			</button>
+			</td>
+			<td id="QLDDaily" style="width: 163px; text-align: center;">
+			<button onclick="drawDaily('QLD')" style="text-decoration:none;">
+				<span style="color: #000000;">
+					<strong>Trend</strong>
+				</span>
+			</button>
+			</td>
+			<td id="SADaily" style="width: 163px; text-align: center;">
+			<button onclick="drawDaily('SA')" style="text-decoration:none;">
+				<span style="color: #000000;">
+					<strong>Trend</strong>
+				</span>
+			</button>
+			</td>
+			<td id="VICDaily" style="width: 163px; text-align: center;">
+			<button onclick="drawDaily('VIC')" style="text-decoration:none;">
+				<span style="color: #000000;">
+					<strong>Trend</strong>
+				</span>
+			</button>
+			</td>
+		</tr>
+		<tr>
+			<td id="AUCross" style="width: 220px; text-align: center;">
+				<button onclick="AUCross()" style="text-decoration:none;">
+					<span style="color: #000000;">
+						<strong>Cross Reference</strong>
+					</span>
+				</button>
+			</td>
+			<td id="AUDailySW" style="width: 163px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swAUDaily" name="swAUDaily" onclick="sanitCK2()">
+					<label class="custom-control-label" for="swAUDaily"></label>
+				</div>
+
+			</td>
+			<td id="AUTotalSW" style="width: 220px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swAUTotal" name="swAUTotal" onclick="sanitCK2()">
+					<label class="custom-control-label" for="swAUTotal"></label>
+				</div>
+
+			</td>
+			<td id="nswDailySW2" style="width: 163px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swNSWDaily2" name="swNSWDaily2" onclick="sanitCK2()">
+					<label class="custom-control-label" for="swNSWDaily2"></label>
+				</div>
+
+			</td>
+			<td id="QLDDailySW" style="width: 163px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swQLDDaily" name="swQLDDaily" onclick="sanitCK2()">
+					<label class="custom-control-label" for="swQLDDaily"></label>
+				</div>
+
+			</td>
+			<td id="SADailySW" style="width: 163px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swSADaily" name="swSADaily" onclick="sanitCK2()">
+					<label class="custom-control-label" for="swSADaily"></label>
+				</div>
+
+			</td>
+			<td id="VICDailySW" style="width: 163px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swVICDaily" name="swVICDaily" onclick="sanitCK2()">
+					<label class="custom-control-label" for="swVICDaily"></label>
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<br></br>
+	<table id="AUtable2" style="border-color: black;" border="1">
+		<tbody>
+		<tr>
+			<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong>Date</strong></span></td>
+			<td style="width: 361.6px; text-align: center;"><strong>WA Increased Daily</strong></td>
+			<td style="width: 361.6px; text-align: center;"><strong>TAS Increased Daily</strong></td>
+			<td style="width: 361.6px; text-align: center;"><strong>NT Increased Daily</strong></td>
+			<td style="width: 361.6px; text-align: center;"><strong>ACT Increased Daily</strong></td>
+		</tr>
+		{%- for row in dataFrame2[::-1] %}
+		<tr>
+			<td style="width: 133px; text-align: center;">{{ row[1] }}</td>
+			<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[6] }}</span></td>
+			<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[7] }}</span></td>
+			<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[8] }}</span></td>
+			<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[9] }}</span></td>
+		</tr>
+		{%- endfor %}
+		<tr>
+			<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong></strong></span></td>
+			<td id="WADaily" style="width: 163px; text-align: center;">
+			<button onclick="drawDaily('WA')" style="text-decoration:none;">
+				<span style="color: #000000;">
+					<strong>Trend</strong>
+				</span>
+			</button>
+			</td>
+			<td id="TASDaily" style="width: 163px; text-align: center;">
+			<button onclick="drawDaily('TAS')" style="text-decoration:none;">
+				<span style="color: #000000;">
+					<strong>Trend</strong>
+				</span>
+			</button>
+			</td>
+			<td id="NTDaily" style="width: 163px; text-align: center;">
+			<button onclick="drawDaily('NT')" style="text-decoration:none;">
+				<span style="color: #000000;">
+					<strong>Trend</strong>
+				</span>
+			</button>
+			</td>
+			<td id="ACTDaily" style="width: 163px; text-align: center;">
+			<button onclick="drawDaily('ACT')" style="text-decoration:none;">
+				<span style="color: #000000;">
+					<strong>Trend</strong>
+				</span>
+			</button>
+			</td>
+		</tr>
+		<tr>
+			<td id="AU2Cross" style="width: 220px; text-align: center;">
+				<button onclick="AUCross()" style="text-decoration:none;">
+					<span style="color: #000000;">
+						<strong>Cross Reference</strong>
+					</span>
+				</button>
+			</td>
+			<td id="WADailySW" style="width: 163px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swWADaily" name="swWADaily" onclick="sanitCK2()">
+					<label class="custom-control-label" for="swWADaily"></label>
+				</div>
+
+			</td>
+			<td id="TASDailySW" style="width: 163px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swTASDaily" name="swTASDaily" onclick="sanitCK2()">
+					<label class="custom-control-label" for="swTASDaily"></label>
+				</div>
+
+			</td>
+			<td id="NTDailySW" style="width: 163px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swNTDaily" name="swNTDaily" onclick="sanitCK2()">
+					<label class="custom-control-label" for="swNTDaily"></label>
+				</div>
+
+			</td>
+			<td id="ACTDailySW" style="width: 163px; text-align: center;">
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="swACTDaily" name="swACTDaily" onclick="sanitCK2()">
+					<label class="custom-control-label" for="swACTDaily"></label>
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<br></br>
+	<br></br>
+</div>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='loader.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='function.js') }}?filever=<?=filesize('{{ url_for('static', filename='function.js') }}')?>"></script>
+<script type="text/javascript">
+function drawDailyChart(statename) {
+	var myTitle = "";
+	switch(statename){
+		case 'QLD':
+			myTitle = 'QLD Increased Daily';
+			break;
+		case 'SA':
+			myTitle = 'SA Increased Daily';
+			break;
+		case 'WA':
+			myTitle = 'WA Increased Daily';
+			break;
+		case 'ACT':
+			myTitle = 'ACT Increased Daily';
+			break;
+		case 'TAS':
+			myTitle = 'TAS Increased Daily';
+			break;
+		case 'VIC':
+			myTitle = 'VIC Increased Daily';
+			break;
+		case 'NT':
+			myTitle = 'NT Increased Daily';
+			break;
+		default:
+			myTitle = 'National Increased Daily';
+
+	}
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', 'Date');
+	data.addColumn('number', myTitle);
+
+	var Data = $.ajax({
+	url: "/getStateData",
+	dataType: "json",
+	type: "GET",
+	data: {
+		state: statename
+	},
+	contentType: 'application/json',
+	async: false
+	}).responseText;
+	data.addRows(JSON.parse(Data));
+
+	var options = {
+	};
+	var chart = new google.charts.Bar(document.getElementById('piechart'));
+	chart.draw(data, options);
+}
+
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+var modal = document.getElementById("myModal");
+modal.style.display = "none";
+//modal.style.visibility = "hidden";
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+	  modal.style.display = "none";
+	  //modal.style.visibility = "hidden";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+	if (event.target == modal) {
+		modal.style.display = "none";
+		//modal.style.visibility = "hidden";
+	}
+}
+</script>
+
+</body>
+</html> 

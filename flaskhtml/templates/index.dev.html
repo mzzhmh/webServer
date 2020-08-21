@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+	overflow: hidden;
+	border: 0px solid #ccc;
+	background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	/*padding: 14px 16px;*/
+	transition: 0.3s;
+	font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+	background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+	background-color: #FFFC9F;
+}
+
+/* Style the tab content */
+.tabcontent {
+	display: none;
+	/*padding: 6px 12px;*/
+	border: 0px solid #ccc;
+	border-top: none;
+}
+table {
+	  font-family: arial, sans-serif;
+	    border-collapse: collapse;
+	      width: 100%;
+}
+
+td, th {
+	  border: 1px solid #dddddd;
+	    text-align: left;
+	      /*padding: 8px;*/
+}
+
+th {
+	  background-color: #dddddd;
+}
+table#NSWtable tr:last-child td:nth-child(2):hover,
+table#NSWtable tr:last-child td:nth-child(3):hover,
+table#NSWtable tr:last-child td:nth-child(4):hover,
+table#NSWtable tr:last-child td:nth-child(5):hover
+{
+	background-color: #ccc;
+}
+table#NSWtable tr:last-child td:nth-child(2),
+table#NSWtable tr:last-child td:nth-child(3),
+table#NSWtable tr:last-child td:nth-child(4),
+table#NSWtable tr:last-child td:nth-child(5)
+{
+	background-color: #F7F6EF;
+}
+table#AUtable tr:last-child td:nth-child(2):hover,
+table#AUtable tr:last-child td:nth-child(3):hover
+{
+	background-color: #ccc;
+}
+table#AUtable tr:last-child td:nth-child(2),
+table#AUtable tr:last-child td:nth-child(3)
+{
+	background-color: #F7F6EF;
+}
+button {
+	background-color: Transparent;
+	background-repeat:no-repeat;
+	border: none;
+	cursor:pointer;
+	overflow: hidden;
+	outline:none;
+}
+/* The Modal (background) */
+.modal {
+	/*position: relative;*/
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 90%; /* Full width */
+	height: 90%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 1%;
+	/*border: 1px solid #888;*/
+	width: 80%;
+	height: 70%;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+#piechart {
+	height: 90%;
+	width: 90%;
+}
+</style>
+</head>
+<body>
+
+<p style="text-align: center;"><strong>澳大利亚</strong><strong>新冠肺炎统计</strong></p>
+<hr />
+<div class="tab">
+	<button class="tablinks" onclick="openCity(event, 'NSW')" id="defaultOpen">新南威尔士州</button>
+	<button class="tablinks" onclick="openCity(event, 'Australia')">澳大利亚全国及各州</button>
+</div>
+
+<div id="NSW" class="tabcontent">
+	<table id="NSWtable" style="border-color: black; width: 688.6px;" border="0">
+		<tbody>
+		<tr>
+			<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong>日期</strong></span></td>
+			<td style="width: 163px; text-align: center;"><span style="color: #000000;"><strong>每日新增</strong></span></td>
+			<td style="width: 224px; text-align: center;"><span style="color: #000000;"><strong>累计确诊</strong></span></td>
+			<td style="width: 230px; text-align: center;"><span style="color: #000000;"><strong>每日测试人数</strong></span></td>
+			<td style="width: 261.6px; text-align: center;"><strong>累计死亡</strong></td>
+			<td style="width: 261.6px; text-align: center;"><strong>新增社区传染</strong></td>
+		</tr>
+		{%- for row in dataFrame[::-1] %}
+		<tr>
+			<td style="width: 133px; text-align: center;">{{ row[1] }}</td>
+			<td style="width: 163px; text-align: center;"><span style="color: #000000;">{{ row[2] }}</span></td>
+			<td style="width: 224px; text-align: center;"><span style="color: #000000;">{{ row[4] }}</span></td>
+			<td style="width: 230px; text-align: center;"><span style="color: #000000;">{{ row[3] }}</span></td>
+			<td style="width: 261.6px; text-align: center;"><span style="color: #000000;">{{ row[6] }}</span></td>
+			<td style="width: 261.6px; text-align: center;"><span style="color: #000000;">{{ row[7] }}</span></td>
+		</tr>
+		{%- endfor %}
+		<tr>
+			<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong></strong></span></td>
+			<td id="nswDaily" style="width: 163px; text-align: center;">
+			    <button onclick="NSWDaily()" style="text-decoration:none;">
+				<span style="color: #000000;">
+					<strong>趋势图</strong>
+			        </span>
+			    </button>
+		        </td>
+			<td id="nswTotal" style="width: 163px; text-align: center;">
+				<button onclick="NSWTotal()" style="text-decoration:none;">
+					<span style="color: #000000;">
+						<strong>趋势图</strong>
+					</span>
+				</button>
+			</td>
+			<td id="nswTest" style="width: 220px; text-align: center;">
+				<button onclick="NSWTest()" style="text-decoration:none;">
+					<span style="color: #000000;">
+						<strong>趋势图</strong>
+					</span>
+				</button>
+			</td>
+			<td id="nswDeath" style="width: 220px; text-align: center;">
+				<button onclick="NSWDeath()" style="text-decoration:none;">
+					<span style="color: #000000;">
+						<strong>趋势图</strong>
+					</span>
+				</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<div id="myModal" class="modal">
+	<div class="modal-content">
+		<span class="close">&times;</span>
+		<div id="piechart"></div>
+	</div>
+</div>
+<div id="Australia" class="tabcontent">
+	<table id="AUtable" style="border-color: black; width: 1588.6px;" border="1">
+		<tbody>
+		<tr>
+			<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong>日期</strong></span></td>
+			<td style="width: 361.6px; text-align: center;"><span style="color: #0000ff;"><strong>澳洲全国新增</strong></td>
+				<td style="width: 361.6px; text-align: center;"><span style="color: #0000ff;"><strong>澳洲全国确诊总数</strong></td>
+					<td style="width: 363px; text-align: center;"><span style="color: #000000;"><strong>新南威尔士新增</strong></span></td>
+					<td style="width: 330px; text-align: center;"><span style="color: #000000;"><strong>昆士兰新增</strong></span></td>
+					<td style="width: 324px; text-align: center;"><span style="color: #000000;"><strong>南澳新增</strong></span></td>
+					<td style="width: 361.6px; text-align: center;"><strong>维多利亚新增</strong></td>
+					<td style="width: 361.6px; text-align: center;"><strong>西澳新增</strong></td>
+					<td style="width: 361.6px; text-align: center;"><strong>塔斯马尼亚新增</strong></td>
+					<td style="width: 361.6px; text-align: center;"><strong>北领地新增</strong></td>
+					<td style="width: 361.6px; text-align: center;"><strong>堪培拉新增</strong></td>
+				</tr>
+				{%- for row in dataFrame2[::-1] %}
+				<tr>
+					<td style="width: 133px; text-align: center;">{{ row[1] }}</td>
+					<td style="width: 361.6px; text-align: center;"><span style="color: #0000ff;">{{ row[10] }}</span></td>
+					<td style="width: 361.6px; text-align: center;"><span style="color: #0000ff;">{{ row[11] }}</span></td>
+					<td style="width: 363px; text-align: center;"><span style="color: #000000;">{{ row[2] }}</span></td>
+					<td style="width: 330px; text-align: center;"><span style="color: #000000;">{{ row[3] }}</span></td>
+					<td style="width: 324px; text-align: center;"><span style="color: #000000;">{{ row[4] }}</span></td>
+					<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[5] }}</span></td>
+					<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[6] }}</span></td>
+					<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[7] }}</span></td>
+					<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[8] }}</span></td>
+					<td style="width: 361.6px; text-align: center;"><span style="color: #000000;">{{ row[9] }}</span></td>
+				</tr>
+				{%- endfor %}
+				<tr>
+					<td style="width: 133px; text-align: center;"><span style="color: #000000;"><strong></strong></span></td>
+					<td id="AUDaily" style="width: 163px; text-align: center;">
+						<button onclick="AUDaily()" style="text-decoration:none;">
+							<span style="color: #000000;">
+								<strong>趋势图</strong>
+							</span>
+						</button>
+					</td>
+					<td id="AUTotal" style="width: 220px; text-align: center;">
+						<button onclick="AUTotal()" style="text-decoration:none;">
+							<span style="color: #000000;">
+								<strong>趋势图</strong>
+							</span>
+						</button>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='loader.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='function.js') }}"></script>
+<script type="text/javascript">
+//google.charts.load('current', {'packages':['corechart']});
+////google.charts.load('current', {packages: ['corechart', 'bar']});
+////google.charts.load('current', {packages: ['corechart', 'line']});
+/*google.charts.setOnLoadCallback(drawChart);*/
+
+/*function drawNSWDailyChart() {
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', '日期');
+	data.addColumn('number', '日新增');
+	//data.addColumn('number', 'Energy Level');
+	
+	var Data = $.ajax({
+		url: "/getNSWDailyData",
+		dataType: "json",
+		type: "GET",
+		contentType: 'application/json',
+		async: false
+		}).responseText;
+	data.addRows(JSON.parse(Data));
+
+	var options = {
+	chart: {
+		title: '新南威尔士州日新增'
+       	}
+	};
+
+	var materialChart = new google.charts.Bar(document.getElementById('piechart'));
+	materialChart.draw(data, options);
+}
+
+function drawNSWTotalChart() {
+	
+	
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', '日期');
+	data.addColumn('number', '新南威尔士州累计确诊');
+
+	var Data = $.ajax({
+		url: "/getNSWTotalData",
+		dataType: "json",
+		type: "GET",
+		contentType: 'application/json',
+		async: false
+		}).responseText;
+	data.addRows(JSON.parse(Data));
+
+	var options = {
+	chart: {
+	       title: '新南威尔士州累计确诊'
+	        },
+	hAxis: {
+		title: '日期'
+       	},
+	vAxis: {
+	title: '新南威尔士州累计确诊'
+       	}
+	};
+
+	var chart = new google.visualization.LineChart(document.getElementById('piechart'));
+	chart.draw(data, options);
+}
+
+function drawNSWTestChart() {
+	
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', '日期');
+	data.addColumn('number', '新南威尔士州每日测试人数');
+
+	var Data = $.ajax({
+		url: "/getNSWTestData",
+		dataType: "json",
+		type: "GET",
+		contentType: 'application/json',
+		async: false
+		}).responseText;
+	data.addRows(JSON.parse(Data));
+
+	var options = {
+	chart: {
+	       title: '新南威尔士州每日测试人数'
+	        },
+	hAxis: {
+		title: '日期'
+       	},
+	vAxis: {
+	title: '新南威尔士州每日测试人数'
+       	}
+	};
+
+	var chart = new google.visualization.LineChart(document.getElementById('piechart'));
+	chart.draw(data, options);
+}
+
+function drawNSWDeathChart() {
+	
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', '日期');
+	data.addColumn('number', '新南威尔士州累计死亡');
+
+	var Data = $.ajax({
+		url: "/getNSWDeathData",
+		dataType: "json",
+		type: "GET",
+		contentType: 'application/json',
+		async: false
+		}).responseText;
+	data.addRows(JSON.parse(Data));
+
+	var options = {
+	chart: {
+	       title: '新南威尔士州累计死亡'
+	        },
+	hAxis: {
+		title: '日期'
+       	},
+	vAxis: {
+	title: '新南威尔士州累计死亡'
+       	}
+	};
+
+	var chart = new google.visualization.LineChart(document.getElementById('piechart'));
+	chart.draw(data, options);
+}
+
+function drawAUDailyChart() {
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', '日期');
+	data.addColumn('number', '全国日新增');
+	
+	var Data = $.ajax({
+		url: "/getAUDailyData",
+		dataType: "json",
+		type: "GET",
+		contentType: 'application/json',
+		async: false
+		}).responseText;
+	data.addRows(JSON.parse(Data));
+
+	var options = {
+	chart: {
+		title: '全国日新增'
+       	}
+	};
+
+	var materialChart = new google.charts.Bar(document.getElementById('piechart'));
+	materialChart.draw(data, options);
+}
+
+function drawAUTotalChart() {
+	
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', '日期');
+	data.addColumn('number', '澳洲全国确诊总数');
+
+	var Data = $.ajax({
+		url: "/getAUTotalData",
+		dataType: "json",
+		type: "GET",
+		contentType: 'application/json',
+		async: false
+		}).responseText;
+	data.addRows(JSON.parse(Data));
+
+	var options = {
+	chart: {
+	       title: '澳洲全国确诊总数'
+	        },
+	hAxis: {
+		title: '日期'
+       	},
+	vAxis: {
+	title: '澳洲全国确诊总数'
+       	}
+	};
+
+	var chart = new google.visualization.LineChart(document.getElementById('piechart'));
+	chart.draw(data, options);
+}
+*/
+</script>
+<script>
+/*
+function openCity(evt, cityName) {
+	var i, tabcontent, tablinks;
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	}
+	tablinks = document.getElementsByClassName("tablinks");
+	for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+	}
+	document.getElementById(cityName).style.display = "block";
+	evt.currentTarget.className += " active";
+}
+function NSWDaily(){
+	//console.log("loading figures");
+	//drawNSWDailyChart();
+	
+	//var options = {'title':'My Average Day', 'width':450, 'height':400};
+	modal.style.display = "block";
+	modal.style.visibility = "hidden";
+	//get parent container size
+	//const EleChart = document.querySelector('#piechart');
+	//console.log(EleChart.getBoundingClientRect());
+	//height = EleChart.getBoundingClientRect().height
+	//width = EleChart.getBoundingClientRect().width
+	//reshape chart size
+	//drawNSWDailyChart(options={title: '新南威尔士日新增',legend: { position: 'none' },colors: ['#e7711c'],histogram: { lastBucketPercentile: 5 },vAxis: { scaleType: 'mirrorLog' }})
+	drawNSWDailyChart();
+	modal.style.visibility = "visible";
+}
+function NSWTotal(){
+	modal.style.display = "block";
+	modal.style.visibility = "hidden";
+	
+	drawNSWTotalChart();
+	modal.style.visibility = "visible";
+}
+function NSWTest(){
+	modal.style.display = "block";
+	modal.style.visibility = "hidden";
+	
+	drawNSWTestChart();
+	modal.style.visibility = "visible";
+}
+function NSWDeath(){
+	modal.style.display = "block";
+	modal.style.visibility = "hidden";
+	
+	drawNSWDeathChart();
+	modal.style.visibility = "visible";
+}
+function AUDaily(){
+	modal.style.display = "block";
+	modal.style.visibility = "hidden";
+	
+	drawAUDailyChart();
+	modal.style.visibility = "visible";
+}
+function AUTotal(){
+	modal.style.display = "block";
+	modal.style.visibility = "hidden";
+	
+	drawAUTotalChart();
+	modal.style.visibility = "visible";
+}
+*/
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+var modal = document.getElementById("myModal");
+modal.style.display = "none";
+//modal.style.visibility = "hidden";
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+	  modal.style.display = "none";
+	  //modal.style.visibility = "hidden";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+	if (event.target == modal) {
+		modal.style.display = "none";
+		//modal.style.visibility = "hidden";
+	}
+}
+</script>
+
+</body>
+</html> 
