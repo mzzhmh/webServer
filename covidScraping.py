@@ -70,11 +70,24 @@ with open(conffile) as f:
     dbase = lines[3].strip().split('=')[1]
     webhost = lines[4].strip().split('=')[1]
     webport = lines[5].strip().split('=')[1]
-
+    nswDCase = lines[6].strip().split('=')[1]
+    nswDTest =  lines[7].strip().split('=')[1]
+    nswDDeath = lines[8].strip().split('=')[1]
+    nswDTrans = lines[9].strip().split('=')[1]
+    nswDRecovery = lines[10].strip().split('=')[1]
+    nswDActive = lines[11].strip().split('=')[1]
+    qldurl = lines[12].strip().split('=')[1]
+    saurl = lines[13].strip().split('=')[1]
+    vicurl = lines[14].strip().split('=')[1]
+    waurl = lines[15].strip().split('=')[1]
+    tasurl = lines[16].strip().split('=')[1]
+    nturl = lines[17].strip().split('=')[1]
+    acturl = lines[18].strip().split('=')[1]
+    ausurl = lines[19].strip().split('=')[1]
 
 #scrap the nsw new and total cases
 try:
-    page = requests.get('http://covidlive.com.au/report/daily-cases/nsw')
+    page = requests.get(nswDCase)
     tree = html.fromstring(page.content)
     #print(tree)
     node = tree.find('.//*[@id="content"]/div/div/section/table')
@@ -106,7 +119,7 @@ except Exception as e:
 
 #scrap the nsw tested case totol and daily
 try:
-    page2 = requests.get('http://covidlive.com.au/report/daily-tests/nsw')
+    page2 = requests.get(nswDTest)
     tree2 = html.fromstring(page2.content)
     #print(tree)
     node2 = tree2.find('.//*[@id="content"]/div/div/section/table')
@@ -136,7 +149,7 @@ except Exception as e2:
 
 #scrap total death
 try:
-    page3 = requests.get('http://covidlive.com.au/report/daily-deaths/nsw')
+    page3 = requests.get(nswDDeath)
     tree3 = html.fromstring(page3.content)
     #print(tree)
     node3 = tree3.find('.//*[@id="content"]/div/div/section/table')
@@ -157,7 +170,7 @@ except Exception as e3:
 
 #scrap community infect
 try:
-    page4 = requests.get('http://covidlive.com.au/report/daily-community-transmission/nsw')
+    page4 = requests.get(nswDTrans)
     tree4 = html.fromstring(page4.content)
     #print(tree4)
     node4 = tree4.find('.//*[@id="content"]/div/div/section/table')
@@ -176,13 +189,13 @@ try:
 except Exception as e4:
     print(str(e4))
    
-NSWrecovery = scrapNewCase('http://covidlive.com.au/report/daily-recoveries/nsw')
+NSWrecovery = scrapNewCase(nswDRecovery)
 NSWrec = NSWrecovery[2]
 print("=======NSW Recovery=======")
 print(NSWrec)
 print("===================")
 
-NSWactive = scrapNewCase('http://covidlive.com.au/report/daily-active-cases/nsw')
+NSWactive = scrapNewCase(nswDActive)
 NSWact = NSWactive[2]
 print("=======NSW Active Case=======")
 print(NSWact)
@@ -235,35 +248,35 @@ except Exception as sqlE:
 #scraping other States and National data
 try:
     #QLD
-    QLD = scrapNewCase('http://covidlive.com.au/report/daily-cases/qld')
+    QLD = scrapNewCase(qldurl)
     QLDdate = QLD[0]
     QLDnew = QLD[1]
     #SA
-    SA = scrapNewCase('http://covidlive.com.au/report/daily-cases/sa')
+    SA = scrapNewCase(saurl)
     SAdate = SA[0]
     SAnew = SA[1]
     #VIC
-    VIC = scrapNewCase('http://covidlive.com.au/report/daily-cases/vic')
+    VIC = scrapNewCase(vicurl)
     VICdate = VIC[0]
     VICnew = VIC[1]
     #WA
-    WA = scrapNewCase('http://covidlive.com.au/report/daily-cases/wa')
+    WA = scrapNewCase(waurl)
     WAdate = WA[0]
     WAnew = WA[1]
     #TAS
-    TAS = scrapNewCase('http://covidlive.com.au/report/daily-cases/tas')
+    TAS = scrapNewCase(tasurl)
     TASdate = TAS[0]
     TASnew = TAS[1]
     #NT
-    NT = scrapNewCase('http://covidlive.com.au/report/daily-cases/nt')
+    NT = scrapNewCase(nturl)
     NTdate = NT[0]
     NTnew = NT[1]
     #ACT
-    ACT = scrapNewCase('http://covidlive.com.au/report/daily-cases/act')
+    ACT = scrapNewCase(acturl)
     ACTdate = ACT[0]
     ACTnew = ACT[1]
     #AU
-    AUS = scrapNewCase('http://covidlive.com.au/report/daily-cases/aus')
+    AUS = scrapNewCase(ausurl)
     AUSdate = AUS[0]
     AUSnew = AUS[1]
     #AUtotal
